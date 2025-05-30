@@ -1,4 +1,4 @@
-# festivalprogram
+# FestivalProgram
 
 FestivalProgram is an open-source platform designed to manage and promote local festivals and events. Its goal is to provide an accessible API so developers can build web or mobile applications without worrying about backend infrastructure.
 
