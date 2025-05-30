@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Municipality extends Model
 {
-    //
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
 }
