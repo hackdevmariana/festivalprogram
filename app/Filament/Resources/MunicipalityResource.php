@@ -19,6 +19,8 @@ class MunicipalityResource extends Resource
     protected static ?string $model = Municipality::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map';
+    protected static ?string $navigationGroup = 'Location';
+
 
     public static function form(Forms\Form $form): Forms\Form
     {
