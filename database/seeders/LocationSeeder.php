@@ -31,8 +31,10 @@ class LocationSeeder extends Seeder
             ['name' => 'Navarra', 'slug' => 'navarra'],
             ['name' => 'La Rioja', 'slug' => 'la-rioja'],
             ['name' => 'País Vasco', 'slug' => 'pais-vasco'],
+            ['name' => 'Comunidad Valenciana', 'slug' => 'comunidad-valenciana'],
             ['name' => 'Ceuta', 'slug' => 'ceuta'],
             ['name' => 'Melilla', 'slug' => 'melilla'],
+
         ];
 
         foreach ($regionData as $data) {
@@ -91,6 +93,10 @@ class LocationSeeder extends Seeder
             ['name' => 'Soria', 'slug' => 'soria', 'region_slug' => 'castilla-y-leon'],
             ['name' => 'Valladolid', 'slug' => 'valladolid', 'region_slug' => 'castilla-y-leon'],
             ['name' => 'Zamora', 'slug' => 'zamora', 'region_slug' => 'castilla-y-leon'],
+            ['name' => 'Valencia', 'slug' => 'valencia', 'region_slug' => 'comunidad-valenciana'],
+            ['name' => 'Alicante', 'slug' => 'alicante', 'region_slug' => 'comunidad-valenciana'],
+            ['name' => 'Castellón', 'slug' => 'castellon', 'region_slug' => 'comunidad-valenciana'],
+
         ];
 
         foreach ($provinceData as $data) {
@@ -9850,7 +9856,13 @@ class LocationSeeder extends Seeder
 ['name' => 'Zúñiga', 'slug' => 'zúñiga', 'province_slug' => 'navarra', 'latitude' => 42.6930374, 'longitude' => -2.3004117],
 
             // Ceuta
+
+            ['name' => 'Ceuta', 'slug' => 'ceuta', 'province_slug' => 'ceuta', 'latitude' => 35.88919, 'longitude' => -5.32042],
+
             // Melilla
+
+            ['name' => 'Melilla', 'slug' => 'melilla', 'province_slug' => 'melilla', 'latitude' => 35.2923, 'longitude' => -2.9381],
+
 
 
         ];
