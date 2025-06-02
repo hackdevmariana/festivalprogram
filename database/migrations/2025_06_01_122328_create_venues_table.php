@@ -20,9 +20,12 @@ return new class extends Migration
             $table->foreignId('municipality_id')->constrained()->onDelete('cascade');
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
+            $table->string('url')->nullable(); // Nueva URL opcional
+            $table->string('logo')->nullable(); // Subida de logo
             $table->timestamps();
         });
     }
+
 
 
     /**

@@ -12,12 +12,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\FileUpload;
 
 class VenueResource extends Resource
 {
     protected static ?string $model = Venue::class;
     protected static ?string $navigationIcon = 'heroicon-o-map';
-    protected static ?string $navigationGroup = 'Location'; 
+    protected static ?string $navigationGroup = 'Location';
 
     public static function form(Forms\Form $form): Forms\Form
     {
@@ -30,6 +31,11 @@ class VenueResource extends Resource
                 ->label('Municipio')
                 ->options(Municipality::pluck('name', 'id'))
                 ->required(),
+            TextInput::make('url')->url()->nullable(),
+            FileUpload::make('logo')
+                ->image()
+                ->directory('logos')
+                ->nullable(),
             TextInput::make('latitude')->numeric()->step(0.0000001),
             TextInput::make('longitude')->numeric()->step(0.0000001),
         ]);

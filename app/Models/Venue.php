@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Venue extends Model
 {
-    protected $fillable = ['name', 'slug', 'description', 'address', 'municipality_id', 'latitude', 'longitude'];
+    protected $fillable = ['name', 'slug', 'description', 'address', 'municipality_id', 'latitude', 'longitude', 'url', 'logo'];
 
     protected static function boot()
     {
