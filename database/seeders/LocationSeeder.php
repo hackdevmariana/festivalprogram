@@ -38,7 +38,10 @@ class LocationSeeder extends Seeder
         ];
 
         foreach ($regionData as $data) {
-            $regions[$data['slug']] = Region::create($data);
+            $regions[$data['slug']] = Region::firstOrCreate(
+                ['slug' => $data['slug']], // Buscar si ya existe
+                ['name' => $data['name']]
+            );
         }
 
         // Crear Provincias con referencia a las Regiones
@@ -61,13 +64,13 @@ class LocationSeeder extends Seeder
             ['name' => 'Gerona', 'slug' => 'gerona', 'region_slug' => 'catalunya'],
             ['name' => 'Tarragona', 'slug' => 'tarragona', 'region_slug' => 'catalunya'],
             ['name' => 'Lérida', 'slug' => 'lerida', 'region_slug' => 'catalunya'],
-            ['name' => 'A Coruña', 'slug' => 'a-coruna', 'region_slug' => 'galicia'],
+            ['name' => 'La Coruña', 'slug' => 'la-coruna', 'region_slug' => 'galicia'],
             ['name' => 'Lugo', 'slug' => 'lugo', 'region_slug' => 'galicia'],
-            ['name' => 'Ourense', 'slug' => 'ourense', 'region_slug' => 'galicia'],
+            ['name' => 'Ourense', 'slug' => 'orense', 'region_slug' => 'galicia'],
             ['name' => 'Pontevedra', 'slug' => 'pontevedra', 'region_slug' => 'galicia'],
             ['name' => 'Álava', 'slug' => 'alava', 'region_slug' => 'pais-vasco'],
-            ['name' => 'Bizkaia', 'slug' => 'bizkaia', 'region_slug' => 'pais-vasco'],
-            ['name' => 'Gipuzkoa', 'slug' => 'gipuzkoa', 'region_slug' => 'pais-vasco'],
+            ['name' => 'Vizcaya', 'slug' => 'vizcaya', 'region_slug' => 'pais-vasco'],
+            ['name' => 'Guipúzcoa', 'slug' => 'guipuzcoa', 'region_slug' => 'pais-vasco'],
             ['name' => 'Almería', 'slug' => 'almeria', 'region_slug' => 'andalucia'],
             ['name' => 'Cádiz', 'slug' => 'cadiz', 'region_slug' => 'andalucia'],
             ['name' => 'Córdoba', 'slug' => 'cordoba', 'region_slug' => 'andalucia'],
@@ -100,11 +103,13 @@ class LocationSeeder extends Seeder
         ];
 
         foreach ($provinceData as $data) {
-            $provinces[$data['slug']] = Province::create([
-                'name' => $data['name'],
-                'slug' => $data['slug'],
-                'region_id' => $regions[$data['region_slug']]->id,
-            ]);
+            $provinces[$data['slug']] = Province::firstOrCreate(
+                ['slug' => $data['slug']], // Evita duplicados
+                [
+                    'name' => $data['name'],
+                    'region_id' => $regions[$data['region_slug']]->id,
+                ]
+            );
         }
 
         // Crear Municipios con referencia a las Provincias
@@ -2043,7 +2048,6 @@ class LocationSeeder extends Seeder
             ['name' => 'La Herrería', 'slug' => 'la-herrería', 'province_slug' => 'albacete', 'latitude' => 38.6225664, 'longitude' => -2.0287030],
             ['name' => 'La Molata', 'slug' => 'la-molata', 'province_slug' => 'albacete', 'latitude' => 38.6831072, 'longitude' => -2.0491869],
             ['name' => 'Molinar', 'slug' => 'molinar', 'province_slug' => 'albacete', 'latitude' => 38.6904892, 'longitude' => -2.0781684],
-            ['name' => 'Santa Ana', 'slug' => 'santa-ana', 'province_slug' => 'albacete', 'latitude' => 38.9013837, 'longitude' => -1.9898750],
             ['name' => 'Alcalá del Júcar', 'slug' => 'alcalá-del-júcar', 'province_slug' => 'albacete', 'latitude' => 39.1928901, 'longitude' => -1.4289945],
             ['name' => 'Casas del Cerro', 'slug' => 'casas-del-cerro', 'province_slug' => 'albacete', 'latitude' => 39.1851406, 'longitude' => -1.4297765],
             ['name' => 'Las Eras', 'slug' => 'las-eras', 'province_slug' => 'albacete', 'latitude' => 39.2000580, 'longitude' => -1.4343684],
@@ -10416,13 +10420,16 @@ class LocationSeeder extends Seeder
         ];
 
         foreach ($municipalityData as $data) {
-            Municipality::create([
+            Municipality::firstOrCreate([
+                'slug' => Str::slug($data['name'] . '-' . $data['province_slug']),
+            ], [
                 'name' => $data['name'],
-                'slug' => Str::slug($data['name']),
                 'province_id' => $provinces[Str::slug($data['province_slug'])]->id,
                 'latitude' => $data['latitude'],
                 'longitude' => $data['longitude'],
             ]);
+
+
         }
     }
 }

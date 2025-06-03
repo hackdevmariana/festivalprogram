@@ -15,8 +15,8 @@ use Filament\Tables\Columns\TextColumn;
 class EventGroupResource extends Resource
 {
     protected static ?string $model = EventGroup::class;
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $navigationGroup = 'Eventos'; // Agrupar con otros modelos de eventos
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Eventos'; 
 
     public static function form(Forms\Form $form): Forms\Form
     {
