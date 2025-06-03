@@ -10,6 +10,7 @@ use Filament\Tables;
 use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\FileUpload;
 
 class RegionResource extends Resource
 {
@@ -30,6 +31,18 @@ class RegionResource extends Resource
                 ->required()
                 ->maxLength(255)
                 ->unique(Region::class),
+
+            FileUpload::make('flag')
+                ->image()
+                ->directory('flags')
+                ->nullable()
+                ->label('Bandera (rectangular)'),
+
+            FileUpload::make('button_flag')
+                ->image()
+                ->directory('button_flags')
+                ->nullable()
+                ->label('Bandera (redonda)'),
         ]);
     }
 
@@ -41,7 +54,6 @@ class RegionResource extends Resource
             TextColumn::make('slug')->sortable()->searchable(),
             TextColumn::make('created_at')->dateTime(),
         ]);
-        
     }
 
     public static function getRelations(): array
