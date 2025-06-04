@@ -11,8 +11,9 @@ class RegionController extends Controller
 {
     public function index()
     {
-        return response()->json(Region::all());
+        return response()->json(Region::select('name', 'slug', 'flag', 'button_flag')->get());
     }
+
 
     public function regionsWithProvinces()
     {
