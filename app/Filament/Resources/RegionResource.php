@@ -30,7 +30,12 @@ class RegionResource extends Resource
             TextInput::make('slug')
                 ->required()
                 ->maxLength(255)
-                ->unique(Region::class),
+                ->unique(Region::class, 'slug', fn($record) => $record)
+                ->disabled()
+                ->dehydrated(false)
+                ->default(fn($record) => $record?->slug),
+
+
 
             FileUpload::make('flag')
                 ->image()
