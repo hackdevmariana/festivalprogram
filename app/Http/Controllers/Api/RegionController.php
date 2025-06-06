@@ -53,8 +53,31 @@ class RegionController extends Controller
     }
 
 
-    public function municipalitiesByRegion(Region $region)
+    public function municipalitiesByRegion($slug)
     {
-        return response()->json($region->provinces()->with('municipalities')->get());
+        $region = Region::where('slug', $slug)->firstOrFail();
+
+        $provinces = $region->provinces()->with('municipalities')->get()->map(function ($province) {
+            return [
+                'name' => $province->name,
+                'slug' => $province->slug,
+                'municipalities' => $province->municipalities->map(function ($municipality) {
+                    return [
+                        'name' => $municipality->name,
+                        'slug' => $municipality->slug,
+                        'latitude' => $municipality->latitude,
+                        'longitude' => $municipality->longitude,
+                    ];
+                }),
+            ];
+        });
+
+        $response = [
+            'name' => $region->name,
+            'slug' => $region->slug,
+            'municipalities' => $provinces->pluck('municipalities')->flatten(),
+        ];
+
+        return response()->json($response);
     }
 }

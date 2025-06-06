@@ -12,4 +12,6 @@ Route::prefix('v1')->group(function () {
     Route::get('/region/{slug}/provinces', [RegionController::class, 'provincesByRegionSlug']); // Provincias de una región
     Route::get('/province/{province}', [ProvinceController::class, 'municipalitiesByProvince']); // Municipios de una provincia
     Route::get('/municipalities', [MunicipalityController::class, 'indexAll']); // Todas las regiones con provincias y municipios
+    Route::get('/region/{slug}/municipalities', [RegionController::class, 'municipalitiesByRegion']); // Municipios de una región
+
 });
