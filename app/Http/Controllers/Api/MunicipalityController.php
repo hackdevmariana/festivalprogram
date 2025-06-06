@@ -9,14 +9,42 @@ use App\Models\Municipality;
 
 class MunicipalityController extends Controller
 {
-public function indexAll()
-{
-    $municipalities = Municipality::with([
-        'province.region'
-    ])->select('name', 'slug', 'latitude', 'longitude', 'province_id')->get();
+    public function indexAll()
+    {
+        $municipalities = Municipality::with([
+            'province.region'
+        ])->select('name', 'slug', 'latitude', 'longitude', 'province_id')->get();
 
-    $transformed = $municipalities->map(function ($municipality) {
-        return [
+        $transformed = $municipalities->map(function ($municipality) {
+            return [
+                'name' => $municipality->name,
+                'slug' => $municipality->slug,
+                'latitude' => $municipality->latitude,
+                'longitude' => $municipality->longitude,
+                'province' => [
+                    'name' => $municipality->province->name,
+                    'slug' => $municipality->province->slug,
+                    'region' => [
+                        'name' => $municipality->province->region->name,
+                        'slug' => $municipality->province->region->slug,
+                        'flag' => 'storage/' . $municipality->province->region->flag,
+                        'button_flag' => 'storage/' . $municipality->province->region->button_flag,
+                    ],
+                ],
+            ];
+        });
+
+        return response()->json($transformed);
+    }
+
+
+    public function show(Municipality $municipality)
+    {
+        // Cargar las relaciones necesarias
+        $municipality->load('province.region');
+
+        // Transformar la respuesta para eliminar campos irrelevantes
+        $transformed = [
             'name' => $municipality->name,
             'slug' => $municipality->slug,
             'latitude' => $municipality->latitude,
@@ -30,17 +58,9 @@ public function indexAll()
                     'flag' => 'storage/' . $municipality->province->region->flag,
                     'button_flag' => 'storage/' . $municipality->province->region->button_flag,
                 ],
-            ],
+            ]
         ];
-    });
 
-    return response()->json($transformed);
-}
-
-
-
-    public function show(Municipality $municipality)
-    {
-        return response()->json($municipality->load('province.region'));
+        return response()->json($transformed);
     }
 }
