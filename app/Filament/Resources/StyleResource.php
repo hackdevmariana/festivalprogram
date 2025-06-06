@@ -13,7 +13,7 @@ class StyleResource extends Resource
     protected static ?string $model = Style::class;
 
     protected static ?string $navigationLabel = 'Estilos';
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-musical-note';
     protected static ?int $navigationSort = 2;
 
     public static function form(Forms\Form $form): Forms\Form
@@ -39,10 +39,7 @@ class StyleResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->sortable(),
+
             ])
             ->filters([
                 // Agregar filtros si es necesario
