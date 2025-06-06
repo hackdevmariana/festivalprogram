@@ -9,9 +9,21 @@ use Illuminate\Http\Request;
 class StyleController extends Controller
 {
     // Listar todos los estilos
-    public function index()
+public function index()
     {
-        return response()->json(Style::all());
+        // Obtener todos los estilos de la base de datos
+        $styles = Style::all();
+
+        // Limpiar los datos y devolver en el formato deseado
+        $transformed = $styles->map(function ($style) {
+            return [
+                'name' => $style->name,
+                'slug' => $style->slug,
+            ];
+        });
+
+        // Devolver la respuesta JSON
+        return response()->json($transformed);
     }
 
     // Mostrar un estilo específico por slug
