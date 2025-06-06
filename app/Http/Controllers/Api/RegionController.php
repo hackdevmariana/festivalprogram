@@ -17,8 +17,26 @@ class RegionController extends Controller
 
     public function regionsWithProvinces()
     {
-        return response()->json(Region::with('provinces')->get());
+        $regions = Region::with('provinces')->get();
+
+        $transformed = $regions->map(function ($region) {
+            return [
+                'name' => $region->name,
+                'slug' => $region->slug,
+                'flag' => 'storage/' . $region->flag,
+                'button_flag' => 'storage/' . $region->button_flag,
+                'provinces' => $region->provinces->map(function ($province) {
+                    return [
+                        'name' => $province->name,
+                        'slug' => $province->slug,
+                    ];
+                }),
+            ];
+        });
+
+        return response()->json($transformed);
     }
+
 
     public function provincesByRegion(Region $region)
     {
