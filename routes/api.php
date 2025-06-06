@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::get('/regions', [RegionController::class, 'index']); // Lista todas las regiones
     Route::get('/regions/provinces', [RegionController::class, 'regionsWithProvinces']); // Todas las regiones con sus provincias
+    Route::get('/region/{slug}/provinces', [RegionController::class, 'provincesByRegionSlug']); // Provincias de una región
     Route::get('/province/{province}', [ProvinceController::class, 'municipalitiesByProvince']); // Municipios de una provincia
     Route::get('/municipalities', [MunicipalityController::class, 'indexAll']); // Todas las regiones con provincias y municipios
 });

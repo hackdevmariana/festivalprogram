@@ -38,10 +38,20 @@ class RegionController extends Controller
     }
 
 
-    public function provincesByRegion(Region $region)
+    public function provincesByRegionSlug($slug)
     {
-        return response()->json($region->provinces);
+        $region = Region::where('slug', $slug)->with('provinces')->firstOrFail();
+
+        $provinces = $region->provinces->map(function ($province) {
+            return [
+                'name' => $province->name,
+                'slug' => $province->slug,
+            ];
+        });
+
+        return response()->json($provinces);
     }
+
 
     public function municipalitiesByRegion(Region $region)
     {
