@@ -36,7 +36,8 @@ class AppSettingResource extends Resource
 
                 TextInput::make('slogan')
                     ->maxLength(255),
-
+                TextInput::make('company')
+                    ->maxLength(255),
                 TextInput::make('domain')
                     ->required()
                     ->maxLength(255),

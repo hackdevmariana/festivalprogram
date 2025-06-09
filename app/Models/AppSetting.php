@@ -12,7 +12,8 @@ class AppSetting extends Model
         'domain',
         'copy_type', // Puede ser 'copyright' o 'copyleft'
         'developed_by',
-        'developed_url'
+        'developed_url',
+        'company'
     ];
 
     // Si no se usan los campos 'created_at' y 'updated_at', podemos desactivarlos.

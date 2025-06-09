@@ -6,9 +6,12 @@
     <title>Mi Proyecto Laravel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="container">
+<body>
     <x-header />
 
     <h1 class="text-center mt-5">¡Bootstrap funciona en Laravel! 🎉</h1>
+
+    <x-footer />
+
 </body>
 </html>
