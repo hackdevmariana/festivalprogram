@@ -9,7 +9,8 @@
 <body>
     <x-header />
 
-    <h1 class="text-center mt-5">¡Bootstrap funciona en Laravel! 🎉</h1>
+
+    <div id="calendar"></div>
 
     <x-footer />
 
