@@ -1,10 +1,13 @@
 <footer class="bg-dark text-light py-4 border-top border-secondary mt-5">
-    <div class="container text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+    <div
+        class="container text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
         <span>
-            @if($copy === 'copyright')
-                <i class="bi bi-c-circle me-1 text-secondary"></i>
-            @elseif($copy === 'copyleft')
-                <i class="bi bi-c-circle me-1 text-secondary" style="transform: rotate(180deg); display: inline-block;"></i>
+            @if ($copy === 'copyright')
+                <i class="bi bi-c-circle"></i> <!-- Icono de Copyright -->
+            @else
+                <i class="bi bi-c-circle" style="transform: rotate(180deg); display: inline-block;"></i>
+
+                <!-- Icono invertido de Copyleft -->
             @endif
             {{ ucfirst($copy) }} © {{ $currentYear }} {{ $company }}
         </span>
@@ -17,4 +20,3 @@
         </span>
     </div>
 </footer>
-
