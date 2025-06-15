@@ -9,8 +9,10 @@
 <body>
     <x-header />
 
-
+<!--
     <div id="calendar"></div>
+-->
+<x-region-list />
 
     <x-footer />
 
