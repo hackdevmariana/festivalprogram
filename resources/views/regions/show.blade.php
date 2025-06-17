@@ -20,9 +20,10 @@
                         <div class="row">
                             @foreach ($province->municipalities as $municipality)
                                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-2">
-                                    <div class="bg-light p-2 border rounded text-start shadow-sm hover-shadow">
+                                    <div class="bg-light p-2 ps-3 border rounded text-start shadow-sm hover-shadow">
                                         {{ $municipality->name }}
                                     </div>
+
                                 </div>
                             @endforeach
                         </div>
