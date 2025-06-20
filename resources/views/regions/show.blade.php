@@ -7,16 +7,26 @@
         <div class="row">
             @foreach ($region->provinces as $province)
                 <div class="col-md-4 mb-3">
-                    <div class="province-card p-3 border rounded">
-                        <a href="{{ route('provinces.show', $province->slug) }}" class="text-decoration-none text-primary"
-                            title="Ver todos los municipios de {{ $province->name }}">
-                            {{ $province->name }}
-                        </a>
+                    <div class="province-card p-3 border rounded d-flex align-items-center justify-content-between cursor-pointer"
+                        onclick="toggleMunicipalities({{ $province->id }})">
 
+                        {{-- Flecha hacia abajo --}}
+                        <span class="me-2" onclick="event.stopPropagation(); toggleMunicipalities({{ $province->id }})"
+                            style="cursor: pointer;">
+                            &#x25BC; {{-- Unicode down arrow ▼ --}}
+                        </span>
+
+                        {{-- Nombre de la provincia como enlace --}}
+                        <h4 class="mb-0 flex-grow-1">
+                            <a href="{{ route('provinces.show', $province->slug) }}"
+                                class="text-decoration-none text-primary">
+                                {{ $province->name }}
+                            </a>
+                        </h4>
                     </div>
                 </div>
 
-                {{-- Bloque de municipios a pantalla completa --}}
+                {{-- Lista desplegable de municipios --}}
                 <div id="municipalities-{{ $province->id }}" class="municipality-list mb-4 w-100" style="display: none;">
                     <div class="container-fluid">
                         <div class="row">
@@ -28,8 +38,6 @@
                                             {{ $municipality->name }}
                                         </div>
                                     </a>
-
-
                                 </div>
                             @endforeach
                         </div>
@@ -39,3 +47,15 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+<script>
+    function toggleMunicipalities(provinceId) {
+        const container = document.getElementById('municipalities-' + provinceId);
+        if (container.style.display === 'none' || container.style.display === '') {
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    }
+</script>
+@endpush

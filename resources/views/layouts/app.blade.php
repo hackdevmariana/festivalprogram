@@ -17,5 +17,6 @@
     </main>
 
     <script src="{{ asset('js/province-toggle.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>
