@@ -8,9 +8,11 @@
             @foreach ($region->provinces as $province)
                 <div class="col-md-4 mb-3">
                     <div class="province-card p-3 border rounded">
-                        <h4 class="province-name" data-target="municipalities-{{ $province->id }}">
+                        <a href="{{ route('provinces.show', $province->slug) }}" class="text-decoration-none text-primary"
+                            title="Ver todos los municipios de {{ $province->name }}">
                             {{ $province->name }}
-                        </h4>
+                        </a>
+
                     </div>
                 </div>
 
