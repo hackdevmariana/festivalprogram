@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Plaza de toros de Zaragoza",
+        "description": null,
+        "address": null,
+        "latitude": null,
+        "longitude": null,
+        "url": null,
+        "logo": null,
+        "municipality_id": 528
+    },
+    {
+        "name": "Auditorio de Zaragoza",
+        "description": null,
+        "address": "Calle Eduardo Ibarra, 3",
+        "latitude": null,
+        "longitude": null,
+        "url": "https://auditoriozaragoza.com",
+        "logo": null,
+        "municipality_id": 528
+    },
+    {
+        "name": "Pabellón Príncipe Felipe",
+        "description": null,
+        "address": "Av. Cesáreo Alierta, 120",
+        "latitude": null,
+        "longitude": null,
+        "url": "https://zaragoza.es/ciudad/deportes/ficha_Pabellon?id=100",
+        "logo": null,
+        "municipality_id": 528
+    },
+    {
+        "name": "Sala López",
+        "description": null,
+        "address": "Calle Sixto Celorrio, 2",
+        "latitude": null,
+        "longitude": null,
+        "url": "https://salalopez.com",
+        "logo": null,
+        "municipality_id": 528
+    },
+    {
+        "name": "Teatro Principal de Zaragoza",
+        "description": null,
+        "address": "Calle del Coso, 57",
+        "latitude": null,
+        "longitude": null,
+        "url": "https://teatroprincipalzaragoza.com",
+        "logo": null,
+        "municipality_id": 528
+    }
+]
