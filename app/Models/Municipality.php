@@ -21,4 +21,8 @@ class Municipality extends Model
     {
         return $this->belongsToMany(EventGroup::class);
     }
+    public function images()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable');
+    }
 }
