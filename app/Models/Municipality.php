@@ -15,6 +15,10 @@ class Municipality extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug';  
+        return 'slug';
+    }
+    public function eventGroups()
+    {
+        return $this->belongsToMany(EventGroup::class);
     }
 }
