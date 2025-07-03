@@ -62,17 +62,20 @@ class MunicipalityResource extends Resource
             TextColumn::make('longitude')->sortable(),
             TextColumn::make('created_at')->dateTime(),
         ])
-        ->filters([
-            SelectFilter::make('province_id')
-                ->label('Province')
-                ->options(Province::pluck('name', 'id')),
-        ]);
+            ->filters([
+                SelectFilter::make('province_id')
+                    ->label('Province')
+                    ->options(Province::pluck('name', 'id')),
+            ]);
     }
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            \App\Filament\Resources\MunicipalityResource\RelationManagers\ImagesRelationManager::class,
+        ];
     }
+
 
     public static function getPages(): array
     {
