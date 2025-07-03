@@ -64,8 +64,11 @@ class EventResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            \App\Filament\Resources\EventResource\RelationManagers\ImagesRelationManager::class,
+        ];
     }
+
 
     public static function getPages(): array
     {
