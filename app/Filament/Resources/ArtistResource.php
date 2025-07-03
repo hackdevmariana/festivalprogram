@@ -46,6 +46,23 @@ class ArtistResource extends Resource
                 ->disk('public')
                 ->directory('artists/photos')
                 ->maxSize(2048), // Tamaño máximo de 2 MB
+
+
+            Forms\Components\Repeater::make('images')
+                ->relationship('images')
+                ->label('Imágenes')
+                ->schema([
+                    Forms\Components\FileUpload::make('path')
+                        ->label('Imagen')
+                        ->image()
+                        ->disk('public')
+                        ->directory('artists/images'),
+                    Forms\Components\TextInput::make('type')->label('Tipo'),
+                    Forms\Components\TextInput::make('caption')->label('Pie/Descripción'),
+                ])
+                ->addActionLabel('Añadir imagen')
+                ->columnSpan('full'),
+
         ]);
     }
 
