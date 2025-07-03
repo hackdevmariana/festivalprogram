@@ -21,4 +21,8 @@ class Venue extends Model
     {
         return $this->belongsTo(Municipality::class);
     }
+    public function images()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable');
+    }
 }
