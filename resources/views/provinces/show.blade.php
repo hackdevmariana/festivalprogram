@@ -10,7 +10,7 @@
                     <ul class="list-unstyled">
                         @foreach($chunk as $municipality)
                             <li>
-                                <a href="{{ route('municipalities.show', $municipality->id) }}">
+                                <a href="{{ route('municipalities.show', $municipality->slug) }}">
                                     {{ $municipality->name }}
                                 </a>
                             </li>
