@@ -70,8 +70,11 @@ class EventGroupResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            \App\Filament\Resources\EventGroupResource\RelationManagers\ImagesRelationManager::class,
+        ];
     }
+
 
     public static function getPages(): array
     {
