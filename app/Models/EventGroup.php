@@ -21,4 +21,8 @@ class EventGroup extends Model
     {
         return $this->hasMany(Event::class);
     }
+    public function municipalities()
+    {
+        return $this->belongsToMany(Municipality::class);
+    }
 }
