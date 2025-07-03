@@ -25,4 +25,9 @@ class EventGroup extends Model
     {
         return $this->belongsToMany(Municipality::class);
     }
+
+    public function images()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable');
+    }
 }
