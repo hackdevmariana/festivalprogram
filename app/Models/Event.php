@@ -31,4 +31,9 @@ class Event extends Model
     {
         return $this->belongsTo(EventGroup::class);
     }
+
+    public function images()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable');
+    }
 }
