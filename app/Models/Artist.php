@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str; 
+use Illuminate\Support\Str;
 
 class Artist extends Model
 {
@@ -20,5 +20,9 @@ class Artist extends Model
         static::creating(function ($artist) {
             $artist->slug = Str::slug($artist->name);
         });
+    }
+    public function images()
+    {
+        return $this->morphMany(\App\Models\Image::class, 'imageable');
     }
 }
