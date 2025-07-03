@@ -79,9 +79,10 @@ class ArtistResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\ArtistResource\RelationManagers\ImagesRelationManager::class,
         ];
     }
+
 
     public static function getPages(): array
     {
