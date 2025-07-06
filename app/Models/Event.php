@@ -7,7 +7,20 @@ use Illuminate\Support\Str;
 
 class Event extends Model
 {
-    protected $fillable = ['title', 'slug', 'description', 'municipality_id', 'start_datetime', 'end_date', 'url', 'poster', 'venue_id', 'price'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'description',
+        'municipality_id',
+        'start_datetime',
+        'end_date',
+        'url',
+        'poster',
+        'venue_id',
+        'price',
+        'event_mode',
+        'online_url'
+    ];
 
     protected static function boot()
     {
