@@ -19,7 +19,8 @@ class Event extends Model
         'venue_id',
         'price',
         'event_mode',
-        'online_url'
+        'online_url',
+        'status'
     ];
 
     protected static function boot()
