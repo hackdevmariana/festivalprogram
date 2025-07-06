@@ -71,6 +71,18 @@ class EventResource extends Resource
                     TextInput::make('url')->url()->label('Web oficial')->nullable(),
                     FileUpload::make('poster')->image()->directory('posters')->nullable(),
                     TextInput::make('price')->numeric()->step(0.01)->nullable(),
+                    Select::make('status')
+                        ->label('Estado')
+                        ->options([
+                            'draft' => 'Borrador',
+                            'submitted' => 'Enviado',
+                            'approved' => 'Aprobado',
+                            'rejected' => 'Rechazado',
+                            'archived' => 'Archivado',
+                        ])
+                        ->default('draft')
+                        ->required(),
+
                 ])
         ]);
     }
@@ -92,6 +104,17 @@ class EventResource extends Resource
                 ->openUrlInNewTab()
                 ->toggleable()
                 ->limit(30),
+            TextColumn::make('status')
+                ->label('Estado')
+                ->badge()
+                ->colors([
+                    'gray' => 'draft',
+                    'warning' => 'submitted',
+                    'success' => 'approved',
+                    'danger' => 'rejected',
+                    'secondary' => 'archived',
+                ])
+                ->sortable(),
 
 
         ]);
