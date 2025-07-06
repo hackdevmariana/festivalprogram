@@ -17,6 +17,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Section;
+use Filament\Tables\Actions\Action;
 
 class EventResource extends Resource
 {
@@ -89,36 +90,45 @@ class EventResource extends Resource
 
     public static function table(Tables\Table $table): Tables\Table
     {
-        return $table->columns([
-            TextColumn::make('id')->sortable(),
-            TextColumn::make('title')->sortable()->searchable(),
-            TextColumn::make('municipality.name')->sortable()->searchable(),
-            TextColumn::make('start_datetime')->sortable(),
-            TextColumn::make('eventGroup.name')->label('Grupo')->sortable()->searchable(),
-            TextColumn::make('venue.name')->sortable()->searchable(),
-            TextColumn::make('price')->sortable(),
-            TextColumn::make('event_mode')->label('Modo')->sortable(),
-            TextColumn::make('online_url')
-                ->label('Enlace online')
-                ->url('online_url')
-                ->openUrlInNewTab()
-                ->toggleable()
-                ->limit(30),
-            TextColumn::make('status')
-                ->label('Estado')
-                ->badge()
-                ->colors([
-                    'gray' => 'draft',
-                    'warning' => 'submitted',
-                    'success' => 'approved',
-                    'danger' => 'rejected',
-                    'secondary' => 'archived',
-                ])
-                ->sortable(),
-
-
-        ]);
+        return $table
+            ->columns([
+                TextColumn::make('id')->sortable(),
+                TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('municipality.name')->sortable()->searchable(),
+                TextColumn::make('start_datetime')->sortable(),
+                TextColumn::make('eventGroup.name')->label('Grupo')->sortable()->searchable(),
+                TextColumn::make('venue.name')->sortable()->searchable(),
+                TextColumn::make('price')->sortable(),
+                TextColumn::make('event_mode')->label('Modo')->sortable(),
+                TextColumn::make('online_url')
+                    ->label('Enlace online')
+                    ->url('online_url')
+                    ->openUrlInNewTab()
+                    ->toggleable()
+                    ->limit(30),
+                TextColumn::make('status')
+                    ->label('Estado')
+                    ->badge()
+                    ->colors([
+                        'gray' => 'draft',
+                        'warning' => 'submitted',
+                        'success' => 'approved',
+                        'danger' => 'rejected',
+                        'secondary' => 'archived',
+                    ])
+                    ->sortable(),
+            ])
+            ->actions([
+                Action::make('aprobar')
+                    ->label('Aprobar')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->visible(fn($record) => $record->status !== 'approved')
+                    ->action(fn($record) => $record->update(['status' => 'approved'])),
+            ]);
     }
+
 
     public static function getRelations(): array
     {
