@@ -89,8 +89,10 @@ class EventResource extends Resource
             TextColumn::make('online_url')
                 ->label('Enlace online')
                 ->url('online_url')
+                ->openUrlInNewTab()
                 ->toggleable()
                 ->limit(30),
+
 
         ]);
     }
